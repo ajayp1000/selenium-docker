@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.1.dtd" >
+<suite name="flight-reservation" >
+    <test name="passengers-1">
+        <parameter name="testDataPath" value="test-data/flight-reservation/passengers-1.json"/>
+        <classes>
+            <class name="com.ajayp.tests.flightreservation.FlightReservationTest"/>
+        </classes>
+    </test>
+    <test name="passengers-2">
+        <parameter name="testDataPath" value="test-data/flight-reservation/passengers-2.json"/>
+        <classes>
+            <class name="com.ajayp.tests.flightreservation.FlightReservationTest"/>
+        </classes>
+    </test>
+</suite>

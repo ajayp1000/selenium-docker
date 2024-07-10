@@ -1,0 +1,11 @@
+{
+  "firstName": "ajay",
+  "lastName": "prakash",
+  "email": "anc@test.com",
+  "password": "test",
+  "street": "North St",
+  "city": "Bangalore",
+  "zip": "550043",
+  "passengersCount": "1",
+  "expectedPrice": "$584 USD"
+}

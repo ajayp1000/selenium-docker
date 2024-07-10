@@ -1,0 +1,22 @@
+pipeline{
+    stages{
+        stage('stage-1'){
+            steps{
+                echo "Doing mvn clean"
+            }
+
+        }
+
+        stage('stage-2'){
+               steps{
+                        echo "Doing docker image"
+                    }
+
+        }
+    }
+    post{
+        always {
+        echo "Doing clean up"
+        }
+    }
+}
