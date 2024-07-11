@@ -1,22 +1,27 @@
 pipeline{
+
+    agent any
+
     stages{
-        stage('stage-1'){
+
+        stage('Build Jar'){
             steps{
-                echo "Doing mvn clean"
+                sh "mvn clean package -DskipTests"
             }
-
         }
 
-        stage('stage-2'){
-               steps{
-                        echo "Doing docker image"
-                    }
+        stage('Build Image'){
+            steps{
+                sh "docker build -t=ajayp100/selenium ."
+            }
+        }
 
+        stage('Image Push'){
+            steps{
+                sh "docker push ajayp100/selenium"
+            }
         }
     }
-    post{
-        always {
-        echo "Doing clean up"
-        }
-    }
+
+
 }
