@@ -2,15 +2,11 @@ pipeline{
 
     agent any
 
-    stages{
+    tools {
+      maven 'MAVEN_HOME'
+    }
 
-         stage('Build Maven PATH'){
-                    steps{
-                        sh "export MAVEN_HOME=/home/ec2-user/apache-maven-3.9.8"
-                        sh "export PATH=$PATH:$MAVEN_HOME/bin"
-                        sh "mvn --version"
-            }
-         }
+    stages{
 
         stage('Build Jar'){
             steps{
@@ -25,7 +21,11 @@ pipeline{
         }
 
         stage('Image Push'){
+            environment{
+            DOCKER_HUB = credentials('docker-creds')
+            }
             steps{
+                sh 'docker login -u ${DOCKER_HUB_USR} -p ${DOCKER_HUB_PSW}'
                 sh "docker push ajayp100/selenium"
             }
         }
@@ -35,6 +35,13 @@ pipeline{
                         sh "cp target/docker-resources/selenium-docker.jar target/docker-resources/libs/"
                         sh "cp target/docker-resources/selenium-docker-tests.jar target/docker-resources/libs/"
             }
+        }
+    }
+
+    post{
+        always{
+        sh "docker system prune -f"
+        sh "docker logout"
         }
     }
 
