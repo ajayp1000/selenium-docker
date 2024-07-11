@@ -4,14 +4,6 @@ pipeline{
 
     stages{
 
-         stage('Build Maven PATH'){
-                    steps{
-                        sh "export MAVEN_HOME=/home/ec2-user/apache-maven-3.9.8"
-                        sh "export PATH=$PATH:$MAVEN_HOME/bin"
-                        sh "mvn --version"
-            }
-         }
-
         stage('Build Jar'){
             steps{
                 sh "mvn clean package -DskipTests"
