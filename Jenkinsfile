@@ -22,7 +22,7 @@ pipeline{
 
         stage('Image Push'){
             steps{
-                sh "docker push ajayp100/selenium"
+                sh "sudo docker push ajayp100/selenium"
             }
         }
 
